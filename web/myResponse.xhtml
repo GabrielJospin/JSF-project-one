@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xml:lang="en" lang="en">
+<h:head>
+    <title>Home page, #{student.lastName}</title>
+</h:head>
+<h:body>
+   The Student is confirmed:  #{student.firstName} #{student.lastName},
+    #{student.typeOfStudent} in #{student.course}
+    <br/>
+    Student's aid:
+    <ul>
+        <ui:repeat value="#{student.aids}" var="tempAid">
+            <li>#{tempAid}</li>
+        </ui:repeat>
+    </ul>
+</h:body>
+</html>
