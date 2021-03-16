@@ -11,12 +11,19 @@ public class Student {
     private String firstName;
     private String lastName;
     private String courseCode;
-    private String errors;
     private int age;
     private String cep;
 
     public Student() {
 
+    }
+
+    public Student(String firstName, String lastName, String courseCode, int age, String cep){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.courseCode = courseCode;
+        this.age = age;
+        this.cep = cep;
     }
 
     public void validateTheCourseCode(FacesContext context, UIComponent component, Object value) throws ValidatorException {
