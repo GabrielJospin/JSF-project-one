@@ -6,14 +6,12 @@
     <title>Home page, #{student.lastName}</title>
 </h:head>
 <h:body>
-   The Student is confirmed:  #{student.firstName} #{student.lastName},
-    #{student.typeOfStudent} in #{student.course}
+   The Student is confirmed:  #{student.firstName} #{student.lastName}
     <br/>
-    Student's aid:
-    <ul>
-        <ui:repeat value="#{student.aids}" var="tempAid">
-            <li>#{tempAid}</li>
-        </ui:repeat>
-    </ul>
+    Course Code: #{student.courseCode}
+    <br/>
+    age: #{student.age}
+    <br/>
+    CEP: #{student.cep}
 </h:body>
 </html>

@@ -1,0 +1,71 @@
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough" xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Student registration form</title>
+
+    <style>
+        .error {color:red}
+    </style>
+
+</h:head>
+<h:body>
+    <h1>Sing Up</h1>
+    <hr/>
+    <h:form>
+
+        First Name:
+        <h:inputText label="first Name" id="firstName" value="#{student.firstName}"/>
+        <h:message for="firstName" styleClass="error"/>
+
+        <br/><br/>
+
+        Last Name:
+        <h:inputText label="last Name"
+                     id="lastName"
+                     value="#{student.lastName}"
+                     required="true"
+                     requiredMessage="Your Last Name is Mandatory"/>
+        <h:message for="lastName" styleClass="error"/>
+
+        <br/><br/>
+
+        Course Code:
+        <h:inputText label="code"
+                     id="code"
+                     value="#{student.courseCode}"
+                     validator="#{student.validateTheCourseCode}"
+                     required="true"
+                     requiredMessage="You must give your Course code!!"/>
+        <h:message for="code" styleClass="error"/>
+        <br/><br/>
+
+        Age:
+        <h:inputText value="#{student.age}"
+                     label="age"
+                     id="age">
+            <f:validateLongRange minimum="18" maximum="100"/>
+        </h:inputText>
+        <h:message for="age" styleClass="error"/>
+
+        <br/><br/>
+        CEP:
+        <h:inputText value="#{student.cep}"
+                     label="CEP"
+                     id="CEP"
+                     validatorMessage="CEP must follow XXXXX-XXX"
+                     required="true"
+                     requiredMessage="You must give your CEP">
+            <f:validateRegex pattern="\d{5}-\d{3}" />
+        </h:inputText>
+        <h:message for="CEP" styleClass="error"/>
+        <br/><br/>
+        <h:commandButton value="submit" action="studentResponse"/>
+    </h:form>
+
+
+
+</h:body>
+</html>

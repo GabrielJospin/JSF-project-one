@@ -1,48 +1,37 @@
+
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import java.util.ArrayList;
-import java.util.List;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 @ManagedBean
 public class Student {
 
     private String firstName;
     private String lastName;
-    private String course;
-    private List<String> courseOptions;
-    private String typeOfStudent;
-    private List<String> typeOfStudentOptions;
-    private List<String> aids;
-    private List<String> aidsOptions;
+    private String courseCode;
+    private String errors;
+    private int age;
+    private String cep;
 
     public Student() {
-        //Country list construct
-        courseOptions = new ArrayList<String>();
-        courseOptions.add("Information System");
-        courseOptions.add("Nutrition");
-        courseOptions.add("Medicine");
-        courseOptions.add("Advocacy");
-        courseOptions.add("Engineering");
-        courseOptions.add("physiotherapy");
-        courseOptions.add("psychology");
 
-        //Country list construct
-        typeOfStudentOptions = new ArrayList<String>();
-        typeOfStudentOptions.add("graduate");
-        typeOfStudentOptions.add("pos-graduate");
-        typeOfStudentOptions.add("Master");
-        typeOfStudentOptions.add("Doctorate");
-        typeOfStudentOptions.add("PHD");
-
-        //Aids
-        aids = new ArrayList<String>();
-        aidsOptions = new ArrayList<String>();
-        aidsOptions.add("Papef");
-        aidsOptions.add("Transport");
-        aidsOptions.add("University");
-        aidsOptions.add("Food");
-        aidsOptions.add("Medical");
     }
 
+    public void validateTheCourseCode(FacesContext context, UIComponent component, Object value) throws ValidatorException {
+
+        if(value == null) return;
+
+        String data = value.toString();
+        if(!data.startsWith("ACH") || data.length() != 7){
+
+            FacesMessage message = new FacesMessage("Curse must be an code like ACH****");
+            context.addMessage(component.getClientId(context), message);
+            throw new ValidatorException(message);
+        }
+
+    }
     //getters and setters
     public String getFirstName() {
         return firstName;
@@ -60,39 +49,29 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public String getCourse() {
-        return course;
+    public String getCourseCode() {
+        return courseCode;
     }
 
-    public void setCourse(String course) {
-        this.course = course;
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
     }
 
-    public List<String> getCourseOptions() {
-        return courseOptions;
+    public int getAge() {
+        return age;
     }
 
-    public String getTypeOfStudent() {
-        return typeOfStudent;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public void setTypeOfStudent(String typeOfStudent) {
-        this.typeOfStudent = typeOfStudent;
+    public String getCep() {
+        return cep;
     }
 
-    public List<String> getTypeOfStudentOptions() {
-        return typeOfStudentOptions;
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 
-    public List<String> getAidsOptions() {
-        return aidsOptions;
-    }
 
-    public List<String> getAids() {
-        return aids;
-    }
-
-    public void setAids(List<String> aids) {
-        this.aids = aids;
-    }
 }

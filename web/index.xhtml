@@ -4,42 +4,17 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough" xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
-    <title>Student registration form</title>
+    <title>Welcome JSF Page</title>
 </h:head>
 <h:body>
-    <h1>Sing Up</h1>
-    <hr/>
     <h:form>
-        First Name:
-        <h:inputText id="firstName" value="#{student.firstName}"/>
-
-        <br/><br/>
-
-        Last Name:
-        <h:inputText id="lastName" value="#{student.lastName}"/>
-
-        <br/><br/>
-
-        Course:
-        <h:selectOneMenu value="#{student.course}">
-            <f:selectItems value="#{student.courseOptions}"/>
+        Select page:
+        <h:selectOneMenu value="#{pages.namePage}">
+            <f:selectItem itemLabel="Student" itemValue="student"/>
+            <f:selectItem itemLabel="Counter" itemValue="counter"/>
         </h:selectOneMenu>
-
-        <br/><br/>
-
-        Aid:
-        <h:selectManyCheckbox value="#{student.aids}">
-            <f:selectItems value="#{student.aidsOptions}"/>
-        </h:selectManyCheckbox>
-
-        <br/><br/>
-
-        Type of Student:
-        <h:selectOneRadio value="#{student.typeOfStudent}">
-            <f:selectItems value="#{student.typeOfStudentOptions}"/>
-        </h:selectOneRadio>
-        <h:commandButton value="submit" action="myResponse"/>
+        .xhtml
+        <h:commandButton value="submit" action="#{pages.start()}"/>
     </h:form>
-
 </h:body>
 </html>
