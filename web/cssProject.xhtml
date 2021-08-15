@@ -1,0 +1,40 @@
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough" xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>CssProject</title>
+    <link rel="stylesheet" type="text/css" href="resources/css/#{style.cssFile}"/>
+</h:head>
+<h:body>
+    <div id="wrapper">
+        <div id="header">
+            <h1>A CSS page</h1>
+        </div>
+    </div>
+    <div id="container">
+        <div id="content">
+            <h:form>
+                Select style:
+
+                <h:selectOneMenu value="#{style.namePage}">
+                    <f:selectItem itemLabel="Style1" itemValue="style"/>
+                    <f:selectItem itemLabel="Style2" itemValue="styleRed"/>
+                </h:selectOneMenu>
+                .css
+                <h:commandButton value="submit" action="#{style.start()}"/>
+            </h:form>
+
+            <p>That's just a Teste of css please don't worry</p>
+            <p>
+                De provocações aos movimentos políticos, a terceira temporada de "F1: Dirigir para Viver" finalmente
+                explora o jogo de intrigas do paddock da Fórmula 1 com uma profundidade fundamental para convencer
+                que a corrida, em si, é só uma parte do que o campeonato envolve. A série documental estreia hoje
+                (19) na Netflix, o UOL Esporte assistiu e conta abaixo como a nova temporada se diferencia das
+                anteriores
+            </p>
+        </div>
+    </div>
+</h:body>
+</html>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Add Student</title>
+    <link rel="stylesheet" type="text/css" href="resources/css/style.css"/>
+</h:head>
+
+<f:metadata>
+    <f:event type="preRenderView" listener="#{studentController.loadStudents()}"/>
+</f:metadata>
+
+<h:body>
+    <div id="wrapper">
+        <div id="header">
+            <h1>Student List</h1>
+        </div>
+    </div>
+    <div id="container">
+        <h3>Add Student</h3>
+        <h:messages globalOnly="true"/>
+
+        <h:form>
+            <h:panelGrid columns="3">
+                <h:outputLabel>First Name:</h:outputLabel>
+                <h:inputText value="#{student.firstName}" id="firstName"/>
+                <h:message for="firstName"/>
+
+                <h:outputLabel>last Name:</h:outputLabel>
+                <h:inputText value="#{student.lastName}"
+                             id="lastName"
+                             required="true"
+                             requiredMessage="Your Last Name is Mandatory"/><h:message for="lastName"/>
+
+                <h:outputLabel>Course Code:</h:outputLabel>
+                <h:inputText value="#{student.courseCode}"
+                             id="course"
+                             validator="#{student.validateTheCourseCode}"
+                             required="true"
+                             requiredMessage="You must give your Course code!!"/><h:message for="course"/>
+
+                <h:outputLabel>Age:</h:outputLabel>
+                <h:inputText value="#{student.age}"
+                             label="age"
+                             id="age">
+                    <f:validateLongRange minimum="18" maximum="100"/>
+                </h:inputText><h:message for="age"/>
+
+                <h:outputLabel>CEP:</h:outputLabel>
+                <h:inputText value="#{student.cep}"
+                                                                label="CEP"
+                                                                id="CEP"
+                                                                validatorMessage="CEP must follow XXXXX-XXX"
+                                                                required="true"
+                                                                requiredMessage="You must give your CEP">
+                <f:validateRegex pattern="\d{5}-\d{3}" />
+            </h:inputText>
+                <h:message for="CEP" styleClass="error"/>
+            <h:outputLabel />
+
+            <h:commandButton value="Save" styleClass="save"
+                             action="#{studentController.addStudent(student)}"/>
+
+            </h:panelGrid>
+        </h:form>
+        <div style="clear: both;"/>
+
+        <p>
+            <h:outputLink value="studentsList.xhtml">Back to List</h:outputLink>
+        </p>
+
+    </div>
+
+</h:body>
+</html>

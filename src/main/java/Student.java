@@ -8,6 +8,7 @@ import javax.faces.validator.ValidatorException;
 @ManagedBean
 public class Student {
 
+    private int id;
     private String firstName;
     private String lastName;
     private String courseCode;
@@ -18,7 +19,8 @@ public class Student {
 
     }
 
-    public Student(String firstName, String lastName, String courseCode, int age, String cep){
+    public Student(int id,String firstName, String lastName, String courseCode, int age, String cep){
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.courseCode = courseCode;
@@ -40,6 +42,15 @@ public class Student {
 
     }
     //getters and setters
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -80,5 +91,10 @@ public class Student {
         this.cep = cep;
     }
 
+    @Override
+    public String toString(){
+        return "Student [firstName = "+firstName+", lastName = "+lastName+", courseCode="+courseCode
+                +", age = "+age+", cep = "+cep+"]";
+    }
 
 }

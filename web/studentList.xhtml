@@ -6,32 +6,74 @@
       xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
-    <title>student Tabe</title>
-     <link rel="stylesheet" type="text/css" href="resources/css/studentsTable.css"/>
+    <title>Student Table</title>
+     <link rel="stylesheet" type="text/css" href="resources/css/style.css"/>
 </h:head>
+
+<f:metadata>
+    <f:event type="preRenderView" listener="#{studentController.loadStudents()}"/>
+</f:metadata>
+
 <h:body>
-    <h1>Student List</h1>
-    <hr/><br/>
-    <h:dataTable value="#{studentDataUtil.students}" var="tempStudents"
-                 styleClass="demo-table"
-                 headerClass="demo-table-header"
-                 rowClasses="demo-table-odd-row, demo-table-even-row">
-        <h:column>
-            <f:facet name="header">Name</f:facet>
-            #{tempStudents.firstName} #{tempStudents.lastName}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Course code</f:facet>
-            #{tempStudents.courseCode}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Age</f:facet>
-            #{tempStudents.age}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Cep</f:facet>
-            #{tempStudents.cep}
-        </h:column>
-    </h:dataTable>
+    <div id="wrapper">
+        <div id="header">
+            <h1>Student List</h1>
+        </div>
+    </div>
+    <div id="container">
+        <div id="content">
+            <h:button value="Add Student" styleClass="add-student-button" outcome="addStudent"/>
+
+            <h:form>
+                <h:outputLabel>Search student:</h:outputLabel> <h:inputText value="#{studentController.theSearchName}" id="theSearchName" />
+                <h:commandButton value="Search" action="list-students?faces-redirect=true" styleClass="add-student-button" />
+
+            </h:form>
+
+
+            <h:dataTable value="#{studentController.students}"
+                         var="tempStudent"
+                         styleClass="demo-table"
+                         headerClass="demo-table-header"
+                         rowClasses="demo-table-odd-row, demo-table-even-row">
+                <h:column>
+                    <f:facet name="header"> Name </f:facet>
+
+                    #{tempStudent.firstName} #{tempStudent.lastName}
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> Course Code </f:facet>
+
+                    #{tempStudent.courseCode}
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> Age </f:facet>
+
+                    #{tempStudent.age}
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> CEP </f:facet>
+
+                    #{tempStudent.cep}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                    <h:form>
+                        <h:commandLink
+                                value="Update"
+                                action="#{studentController.loadStudent(tempStudent.id)}"/>
+                        |
+                        <h:commandLink
+                                value="Delete"
+                                onclick="if(!confirm('Are you sure you want delete this student?')) return false"
+                                action="#{studentController.deleteStudent(tempStudent.id)}"/>
+                    </h:form>
+                </h:column>
+            </h:dataTable>
+
+            <h:messages/>
+        </div>
+    </div>
+
 </h:body>
 </html>
